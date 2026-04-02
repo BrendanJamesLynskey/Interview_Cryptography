@@ -118,7 +118,7 @@ All arithmetic is in $\text{GF}(2^8)$ with irreducible polynomial $x^8 + x^4 + x
 
 Multiplication by $\texttt{02}$ in $\text{GF}(2^8)$ is a left shift by one bit; if the high bit was 1, XOR with $\texttt{0x1B}$ (the low 8 bits of $\texttt{0x11B}$).
 
-**Why MixColumns is necessary:** ShiftRows rearranges bytes but does not mix their values. MixColumns ensures that each output byte is a linear combination of all four input bytes in the same column, providing **confusion** (in Shannon's sense). The matrix is chosen to be **MDS (Maximum Distance Separable)**, guaranteeing that any non-zero input to a column produces at least 5 non-zero output bytes across the combined ShiftRows+MixColumns step (the "wide trail" strategy).
+**Why MixColumns is necessary:** ShiftRows rearranges bytes but does not mix their values. MixColumns ensures that each output byte is a linear combination of all four input bytes in the same column, providing **diffusion** (in Shannon's sense). The matrix is chosen to be **MDS (Maximum Distance Separable)**, guaranteeing that any non-zero input to a column produces at least 5 non-zero output bytes across the combined ShiftRows+MixColumns step (the "wide trail" strategy).
 
 MixColumns is **not applied in the final round** of AES, which simplifies the hardware and software implementation of decryption.
 
@@ -413,7 +413,7 @@ The **wide trail strategy** (Daemen and Rijmen, the AES designers) is a framewor
 1. After ShiftRows, bytes from different columns are interleaved into the same column.
 2. MixColumns then ensures each active byte in any column propagates to affect multiple bytes in the next round.
 
-The minimum number of active S-Boxes across **two rounds** of AES is 25. Since the best differential characteristic for one S-Box has probability at most $2^{-6}$, any four-round differential characteristic has probability at most $2^{-150}$, far below the security threshold for a 128-bit key.
+The minimum number of active S-Boxes across **four rounds** of AES is 25. Since the best differential characteristic for one S-Box has probability at most $2^{-6}$, any four-round differential characteristic has probability at most $2^{-150}$, far below the security threshold for a 128-bit key.
 
 In practice, the 10-round AES-128 has a security margin orders of magnitude beyond what can be reached with current differential or linear cryptanalytic techniques.
 

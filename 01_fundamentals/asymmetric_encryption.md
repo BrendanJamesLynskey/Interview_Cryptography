@@ -223,7 +223,7 @@ print(is_prime(2**127-1)) # True (Mersenne prime M127)
 
 #### Fermat Primality Test (and why it is insufficient)
 
-For completeness: the Fermat test checks $a^{n-1} \equiv 1 \pmod{n}$ for random $a$. This works for most composites but fails for **Carmichael numbers** (e.g., 561 = 3 × 7 × 11), which satisfy $a^{n-1} \equiv 1 \pmod{n}$ for all $a$ coprime to $n$. Miller-Rabin is immune to Carmichael numbers and is always preferred.
+For completeness: the Fermat test checks $a^{n-1} \equiv 1 \pmod{n}$ for random $a$. This works for most composites but fails for **Carmichael numbers** (e.g., 561 = 3 × 11 × 17), which satisfy $a^{n-1} \equiv 1 \pmod{n}$ for all $a$ coprime to $n$. Miller-Rabin is immune to Carmichael numbers and is always preferred.
 
 ---
 
@@ -354,7 +354,7 @@ $$
 a^{n-1} \equiv 1 \pmod{n} \quad \text{for all } a \text{ with } \gcd(a, n) = 1
 $$
 
-The smallest Carmichael number is $561 = 3 \times 7 \times 11$.
+The smallest Carmichael number is $561 = 3 \times 11 \times 17$.
 
 **Why Fermat's test fails:** The Fermat primality test declares $n$ probably prime if $a^{n-1} \equiv 1 \pmod{n}$ for a random base $a$. For a Carmichael number, this condition holds for every $a$ coprime to $n$, so the test always returns "probably prime" regardless of how many random bases are tried. Carmichael numbers are effectively **unconditional false positives** for the Fermat test.
 
@@ -364,7 +364,7 @@ Miller-Rabin requires not just $a^{n-1} \equiv 1 \pmod{n}$ but that the sequence
 - $a^d \equiv 1 \pmod{n}$, or
 - $a^{2^r d} \equiv -1 \pmod{n}$ for some $0 \leq r < s$
 
-For $n = 561 = 3 \times 7 \times 11$, consider $a = 2$:
+For $n = 561 = 3 \times 11 \times 17$, consider $a = 2$:
 - $n - 1 = 560 = 2^4 \times 35$
 - $2^{35} \bmod 561 = 263 \neq 1$ and $\neq 560$
 - $2^{70} \bmod 561 = 166 \neq 560$

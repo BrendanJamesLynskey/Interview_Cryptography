@@ -44,7 +44,7 @@ By Fermat's little theorem, if $p$ is prime then $a^{p-1} \equiv 1 \pmod p$ for 
 
 **Test:** For random $a$, check $a^{n-1} \equiv 1 \pmod n$. If not, $n$ is composite.
 
-**Weakness — Carmichael numbers:** Composite numbers $n$ for which $a^{n-1} \equiv 1 \pmod n$ for all $\gcd(a, n) = 1$. These unconditionally fool the Fermat test. The smallest is $561 = 3 \times 7 \times 11$. There are infinitely many Carmichael numbers.
+**Weakness — Carmichael numbers:** Composite numbers $n$ for which $a^{n-1} \equiv 1 \pmod n$ for all $\gcd(a, n) = 1$. These unconditionally fool the Fermat test. The smallest is $561 = 3 \times 11 \times 17$. There are infinitely many Carmichael numbers.
 
 ---
 
