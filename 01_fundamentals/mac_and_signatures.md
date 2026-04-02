@@ -176,7 +176,7 @@ $$
 
 Real-world exploit: The PlayStation 3 hack (2010) recovered the ECDSA signing key because Sony used a **constant** $k$ across all signatures.
 
-**Biased nonce attack (Lattice attack):** Even a few biased bits in $k$ (e.g., if $k$ is always in the lower half of $[1, n-1]$) leak enough information to recover $d$ using lattice reduction (LLL/BKZ) after collecting $\sim 100$–300 signatures. CVE-2020-0601 (Windows CryptoAPI) exploited weak nonce generation in ECDSA.
+**Biased nonce attack (Lattice attack):** Even a few biased bits in $k$ (e.g., if $k$ is always in the lower half of $[1, n-1]$) leak enough information to recover $d$ using lattice reduction (LLL/BKZ) after collecting $\sim 100$–300 signatures. The Android Bitcoin wallet vulnerability (2013) exploited weak ECDSA nonce generation: the `SecureRandom` PRNG on affected Android versions produced repeated $k$ values, allowing private key recovery from two signatures sharing the same nonce.
 
 ```python
 # ECDSA signing — DANGEROUS example showing nonce reuse vulnerability
@@ -522,7 +522,7 @@ For $\ell$-bit bias in 256-bit nonces:
 - $\ell = 4$ (four known bits): requires $\sim 40$ signatures
 - $\ell = 8$ (one biased byte): requires $\sim 6$ signatures
 
-**Real-world CVEs:** CVE-2020-0601 (Windows CryptoAPI) exploited weak P-256 nonce generation. OpenSSL CVE-2011-4354 (ARM) had weak nonce generation. The Minerva attack (2019) exploited sub-nanosecond timing leaks in ECDSA nonce generation on smartcards.
+**Real-world examples:** The Android Bitcoin wallet vulnerability (2013) exploited a faulty `SecureRandom` implementation that repeated ECDSA nonces, directly exposing private keys. OpenSSL CVE-2011-4354 (ARM) had weak nonce generation. The Minerva attack (2019) exploited sub-nanosecond timing leaks in ECDSA nonce generation on smartcards.
 
 **Defence:** RFC 6979 deterministic nonce generation eliminates bias entirely; the nonce is derived via HMAC-DRBG from the private key and message hash, providing provably uniform distribution with no timing leakage from the nonce generation step.
 

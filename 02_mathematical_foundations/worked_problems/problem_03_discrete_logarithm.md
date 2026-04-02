@@ -156,18 +156,7 @@ Compute $g^{n/2} = 5^{11} \bmod 23$. We showed above: $5^{11} \equiv -1 \equiv 2
 
 Compute $y^{n/2} = 11^{11} \bmod 23$.
 
-$11^{11} \bmod 23$ — using square-and-multiply:
-
-```
-11 = 1011₂
-R = 1, base = 11
-Bit 3 (=1): R = 11;              base² = 121 mod 23 = 6  (121 = 5×23+6)
-Bit 2 (=0): R = 11;              base² = 36 mod 23 = 13
-Bit 1 (=1): R = 11 × 13 = 143 mod 23 = 143 - 6×23 = 5;  base² = 169 mod 23 = 8 (169=7×23+8)
-Bit 0 (=1): R = 5 × 8 = 40 mod 23 = 17
-```
-
-Wait — let me re-examine the algorithm. $11 = 1011_2$ (4 bits). Left-to-right:
+$11^{11} \bmod 23$ — using left-to-right square-and-multiply ($11 = 1011_2$, 4 bits):
 
 ```
 R = 1

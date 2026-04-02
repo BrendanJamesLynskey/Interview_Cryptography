@@ -116,10 +116,9 @@ Test $\zeta = 2$:
 ```
 2^1 = 2
 2^2 = 4
-2^4 = 16   ← This equals -1 mod 17! So 2^4 = -1 means 2 is a primitive 8th root
-            Wait: we need 2n = 16. Check 2^8 mod 17:
-2^8 = (2^4)^2 = 16^2 = 256 mod 17 = 256 - 15*17 = 256 - 255 = 1 mod 17
-So ord(2) = 8, not 16.
+2^4 = 16 ≡ -1 mod 17
+2^8 = (2^4)^2 = 16^2 = 256 mod 17 = 256 - 15*17 = 1 mod 17
+So ord(2) = 8, not 16. We need ord(ζ) = 2n = 16, so ζ = 2 is insufficient.
 ```
 
 Test $\zeta = 3$:

@@ -262,7 +262,7 @@ $e = 65537 = 2^{16} + 1$ is chosen for two reasons:
 
 1. **Security over $e = 3$:** If $e = 3$ and the same message $m$ is sent to three recipients with independent moduli $n_1, n_2, n_3$, the Chinese Remainder Theorem yields $m^3$ over $\mathbb{Z}$, and taking the integer cube root recovers $m$ directly (**Håstad's broadcast attack**). With $e = 65537$, an attacker would need 65537 recipients for the analogous attack, which is not practical.
 
-2. **Efficient modular exponentiation with $e = 65537$:** In binary, $65537 = 1\underbrace{00\ldots0}_{16}1$. Exponentiation using square-and-multiply requires exactly **17 squarings and 1 multiplication** (for the two set bits). This is fast and has minimal timing variation.
+2. **Efficient modular exponentiation with $e = 65537$:** In binary, $65537 = 1\underbrace{00\ldots0}_{16}1$. Exponentiation using square-and-multiply requires exactly **16 squarings and 1 multiplication** (16 squarings to traverse the 16 zero bits after the leading 1, plus 1 multiply for the trailing set bit). This is fast and has minimal timing variation.
 
 Small $e$ values ($e = 3$, $e = 17$) are also vulnerable to low-public-exponent attacks when plaintext messages are short or when OAEP is not used. $e = 65537$ is large enough to avoid these concerns while still being efficient.
 

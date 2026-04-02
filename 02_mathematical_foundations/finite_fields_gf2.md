@@ -165,7 +165,7 @@ $$
 x^{13} \equiv x^7 + x^6 + x^4 + x^3 + x^2 + x  \quad \text{(computed by successive multiplication by }x\text{)}
 $$
 
-Wait — the cleaner approach is the **xtime** method:
+The standard implementation uses the **xtime** method instead of direct polynomial expansion:
 
 #### The xtime Operation
 

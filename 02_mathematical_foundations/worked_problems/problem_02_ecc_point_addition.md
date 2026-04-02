@@ -38,7 +38,7 @@ So QR mod 7 = $\{0, 1, 2, 4\}$ (including 0). Non-residues: $\{3, 5, 6\}$.
 | 5 | $125 - 5 + 1 = 121 \equiv 2$ | Yes ($2 = 3^2$... check: $3^2 = 9 \equiv 2$. Yes.) | $(5, 3)$ and $(5, 4)$ |
 | 6 | $216 - 6 + 1 = 211 \equiv 1$ | Yes | $(6, 1)$ and $(6, 6)$ |
 
-Wait — let me recheck $x = 6$: $211 = 30 \times 7 + 1$, so $211 \equiv 1$. Yes.
+Verification for $x = 6$: $211 = 30 \times 7 + 1$, so $211 \equiv 1 \pmod 7$. $\checkmark$
 
 **All points on $E(\mathbb{F}_7)$:**
 
@@ -54,9 +54,7 @@ $$
 
 ## Part B: Point Addition $P + Q$ where $P = (0, 1)$ and $Q = (6, 3)$
 
-Wait — is $Q = (6, 3)$ on the curve? Check: $3^2 = 9 \equiv 2 \pmod 7$, but $6^3 - 6 + 1 = 216 - 5 = 211 \equiv 1 \pmod 7$. We need $y^2 = 1$, so $y = 1$ or $y = 6$. The point $(6, 3)$ is NOT on this curve.
-
-Use $Q = (6, 6)$ instead (which is on the curve).
+Note: $Q = (6, 3)$ is not on the curve — checking: $3^2 = 9 \equiv 2 \pmod 7$, but $6^3 - 6 + 1 = 211 \equiv 1 \pmod 7$, so $y^2 = 1$ requires $y \in \{1, 6\}$. The correct point is $Q = (6, 6)$.
 
 **Compute $P + Q$ where $P = (0, 1)$, $Q = (6, 6)$:**
 

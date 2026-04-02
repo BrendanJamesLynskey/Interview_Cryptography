@@ -132,7 +132,7 @@ Verify: ECDSA_Verify(C[1].publicKey,         -- C[1]'s RSA-4096 key
                      C[0].signatureValue)
 ```
 
-Wait — there is an inconsistency here. C[0] is an EC certificate signed with ECDSA, but
+There is an inconsistency here: C[0] is an EC certificate signed with ECDSA, but
 C[1]'s public key is RSA-4096. A RSA public key cannot verify an ECDSA signature, and
 an ECDSA private key cannot produce an RSA signature.
 
