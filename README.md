@@ -51,6 +51,7 @@ Cryptographic protocols and their design patterns.
 - [Key Exchange: Diffie-Hellman and ECDH](03_protocols/key_exchange_dh_ecdh.md)
 - [PKI and Certificates](03_protocols/pki_and_certificates.md)
 - [Authentication Protocols](03_protocols/authentication_protocols.md)
+- [Zero Knowledge Proofs](03_protocols/zero_knowledge_proofs.md)
 - [Worked Problems](03_protocols/worked_problems/)
   - [Problem 01: TLS 1.3 Handshake](03_protocols/worked_problems/problem_01_tls13_handshake.md)
   - [Problem 02: Certificate Chain](03_protocols/worked_problems/problem_02_certificate_chain.md)
