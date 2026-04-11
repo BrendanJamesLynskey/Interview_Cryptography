@@ -339,7 +339,7 @@ The IV ensures that two encryptions of the **same plaintext** under the **same k
 
 AES-128 requires **11 round keys** of 128 bits each (one for the pre-round AddRoundKey and one for each of the 10 rounds), totalling 1408 bits expanded from the original 128-bit key.
 
-The key schedule expands the key as 44 words of 32 bits each ($W[0]$ through $W[43]$). The initial key supplies $W[0]$–$W[3]$. Each subsequent word is derived as:
+The key schedule expands the key as 44 words of 32 bits each ($W[0]$ through $W[43]$). The initial key supplies $W[0]\text{–}W[3]$. Each subsequent word is derived as:
 
 ```
 W[i] = W[i-4] XOR g(W[i-1])    when i mod 4 == 0

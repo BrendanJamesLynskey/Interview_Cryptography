@@ -69,7 +69,7 @@ H4 = 0x510e527f    H5 = 0x9b05688c    H6 = 0x1f83d9ab    H7 = 0x5be0cd19
 
 #### The Compression Function
 
-The compression function $f_{\text{compress}}$ takes the current 256-bit state (eight 32-bit words $a$–$h$) and a 512-bit message block, and produces a new 256-bit state.
+The compression function $f_{\text{compress}}$ takes the current 256-bit state (eight 32-bit words $a\text{–}h$) and a 512-bit message block, and produces a new 256-bit state.
 
 **Message schedule:** Expand the 16 input words $W_0, \ldots, W_{15}$ to 64 words:
 
