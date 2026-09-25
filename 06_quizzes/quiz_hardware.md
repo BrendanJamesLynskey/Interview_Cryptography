@@ -242,8 +242,8 @@ Answer A (256 bits) confuses the number of entries with total storage.
 Answer B (512 bits) is 256 entries × 2 bits — wrong entry width.
 Answer C (1024 bits) is 256 entries × 4 bits — also wrong.
 
-In practice, a 256×8 single-port ROM on an FPGA occupies half a block RAM tile
-(one BRAM tile is typically 18 Kbits = 2 KiB).
+In practice, a 256×8 single-port ROM on an FPGA uses about one-ninth of an 18 Kbit
+block RAM tile (18 Kbits = 2.25 KiB), or can be built from distributed LUTs.
 
 ---
 

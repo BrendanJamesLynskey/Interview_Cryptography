@@ -150,9 +150,9 @@ abort with an `illegal_parameter` alert.
 Even if the attacker replaces the `supported_versions` extension in the ClientHello and
 the resulting negotiation produces a TLS 1.2 handshake, the TLS 1.2 Finished message is
 a MAC over the entire handshake transcript (including the modified ClientHello). The
-legitimate server computes a Finished using its view of the transcript (the original
-ClientHello). The attacker's modified ClientHello produces a different transcript, so the
-server's Finished will not match what the client computes — the handshake fails.
+legitimate server computes a Finished using its view of the transcript (the modified
+ClientHello), while the client's transcript contains the original ClientHello. The two
+transcripts differ, so the server's Finished will not match what the client computes — the handshake fails.
 
 **Transcript comparison:**
 
@@ -296,7 +296,7 @@ def verify_jwt(token, rsa_public_key):
    an HMAC key. The RSA public key is not a secret; using it as an HMAC "secret" provides
    zero security because HMAC requires a secret key.
 
-3. **Use a well-audited JWT library.** Libraries like `python-jose` (>=3.2.0), `PyJWT`
+3. **Use a well-audited JWT library.** Libraries like `python-jose` (>=3.4.0), `PyJWT`
    (>=2.4.0), and `jsonwebtoken` (Node.js >=9.0.0) reject algorithm confusion by design.
    Avoid implementing JWT verification from scratch.
 

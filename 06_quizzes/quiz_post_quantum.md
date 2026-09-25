@@ -268,7 +268,7 @@ probabilistic even from a deterministic nonce.
 **Q6. Answer: B — Security of hash functions**
 
 SLH-DSA (SPHINCS+) is a stateless hash-based signature scheme. Its security reduces
-entirely to properties of the underlying hash function (SHA-256, SHAKE256, or Haraka):
+entirely to properties of the underlying hash function (SHA-2 or SHAKE; FIPS 205 dropped the Haraka option of the SPHINCS+ submission):
 - **One-wayness** for Winternitz OTS (W-OTS+) chains
 - **Pseudorandomness** for key generation
 - **Second-preimage resistance** for the Merkle tree construction
@@ -410,7 +410,7 @@ uniform over $\mathbb{Z}_q$, the term $\mathbf{s}^T\mathbf{e}_1$ could be as lar
 as $\sim k \cdot n \cdot q/2$, which would dwarf the message component and cause
 incorrect decryption with high probability.
 
-Small secrets are essential for correctness. Fortunately, Regev's proof shows LWE
+Small secrets are essential for correctness. Fortunately, Applebaum, Cash, Peikert and Sahai (CRYPTO 2009) showed LWE
 is as hard with small secrets as with uniform secrets (a "secret is small" reduction),
 so using small secrets does not reduce security.
 

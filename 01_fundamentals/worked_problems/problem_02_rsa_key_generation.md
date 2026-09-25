@@ -34,7 +34,7 @@ $$
 n = p \cdot q = 61 \times 53 = 3233
 $$
 
-**Bit length:** $\lfloor \log_2(3233) \rfloor = 11$ bits. (In practice, RSA-2048 uses 1024-bit primes for a 2048-bit modulus.)
+**Bit length:** $\lfloor \log_2(3233) \rfloor + 1 = 12$ bits. (In practice, RSA-2048 uses 1024-bit primes for a 2048-bit modulus.)
 
 ---
 
@@ -355,7 +355,7 @@ print(f"\nAll checks passed: recovered m = {m_crt}")
 
 ### Why These Parameters Are Insecure (Educational Use Only)
 
-1. **Tiny modulus:** $n = 3233$ is 11 bits. Trial division up to $\sqrt{3233} \approx 56.9$ immediately factors $n$. Production RSA requires $n \geq 2048$ bits.
+1. **Tiny modulus:** $n = 3233$ is 12 bits. Trial division up to $\sqrt{3233} \approx 56.9$ immediately factors $n$. Production RSA requires $n \geq 2048$ bits.
 
 2. **Small key space:** With only 3233 possible ciphertext values, an attacker can build a complete lookup table.
 

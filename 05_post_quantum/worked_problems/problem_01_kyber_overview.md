@@ -178,9 +178,10 @@ $$v - s^T u = m_{enc} + (e^T r + e_2 - s^T e_1)$$
 
 The error term $e^T r + e_2 - s^T e_1$ is small because $e$, $r$, $e_1$, $e_2$, and
 $s$ are all drawn from small distributions (at most $\eta$ bound on coefficients). For
-Kyber-768, each coefficient of this error term is bounded by approximately
-$\eta_1 n + \eta_2 + \eta_1 \eta_2 n < q/4$, ensuring that rounding recovers the
-correct bit for each coefficient of $m$.
+Kyber-768 ($\eta_1 = \eta_2 = 2$, $k = 3$, $n = 256$) a worst-case bound such as
+$\eta_1 \eta_2 k n = 3072$ exceeds $q/4 \approx 832$, so correctness is probabilistic:
+the error coefficients concentrate near 0 and exceed $q/4$ (breaking the rounding) only
+with the tiny failure probability below.
 
 Decryption failure probability for Kyber-768 is $< 2^{-164}$ — negligible.
 

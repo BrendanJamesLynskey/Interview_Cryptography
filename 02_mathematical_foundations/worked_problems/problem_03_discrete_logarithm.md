@@ -31,18 +31,18 @@ To confirm the order is 22 (not a proper divisor), verify that $g^{22/q} \not\eq
 Compute using square-and-multiply. $11 = 1011_2$:
 
 ```
-R = 1, base = 5
-Bit 3 (=1): R = 1 × 5 = 5;       base² = 25 mod 23 = 2
-Bit 2 (=0): R = 5;                base² = 2² mod 23 = 4
-Bit 1 (=1): R = 5 × 4 = 20;      base² = 4² mod 23 = 16
-Bit 0 (=1): R = 20 × 16 = 320 mod 23
+R = 1, base = 5   (right to left, starting from bit 0)
+Bit 0 (=1): R = 1 × 5 = 5;       base² = 25 mod 23 = 2
+Bit 1 (=1): R = 5 × 2 = 10;      base² = 2² mod 23 = 4
+Bit 2 (=0): R = 10;               base² = 4² mod 23 = 16
+Bit 3 (=1): R = 10 × 16 = 160 mod 23
 
-320 / 23 = 13.9...; 13 × 23 = 299; 320 - 299 = 21
+160 / 23 = 6.9...; 6 × 23 = 138; 160 - 138 = 22
 
-5^11 mod 23 = 21 ≠ 1  ✓
+5^11 mod 23 = 22 ≠ 1  ✓
 ```
 
-Alternatively: $21 \equiv -1 \pmod{23}$. Since $5^{11} \equiv -1$, this also confirms $5$ has order exactly 22 (by Fermat's little theorem, $5^{22} \equiv 1$, and $5^{11} \equiv -1 \not\equiv 1$).
+Alternatively: $22 \equiv -1 \pmod{23}$. Since $5^{11} \equiv -1$, this also confirms $5$ has order exactly 22 (by Fermat's little theorem, $5^{22} \equiv 1$, and $5^{11} \equiv -1 \not\equiv 1$).
 
 **Check $5^{22/11} = 5^{2} \bmod 23$:**
 
@@ -244,7 +244,7 @@ From Part B table: $5^6 = 8$, $5^7 = 8 \times 5 = 40 \equiv 17$, $5^8 = 17 \time
 
 **Pohlig-Hellman detail:** If $n = q_1^{e_1} \cdots q_k^{e_k}$, complexity is $O\left(\sum_i e_i \sqrt{q_i}\right)$.
 
-For our example ($n = 22 = 2 \times 11$): $O(\sqrt{2} + \sqrt{11}) \approx O(1.4 + 3.3) = O(5)$. Much cheaper than $O(\sqrt{22}) \approx O(5)$ BSGS, though at this scale the difference is minimal. The power of Pohlig-Hellman shows for groups with very smooth order:
+For our example ($n = 22 = 2 \times 11$): $O(\sqrt{2} + \sqrt{11}) \approx O(1.4 + 3.3) = O(4.7)$ — no cheaper than $O(\sqrt{22}) \approx O(4.7)$ for BSGS; at this scale there is no gain. The power of Pohlig-Hellman shows for groups with very smooth order:
 
 **Contrast — smooth vs. prime order groups:**
 

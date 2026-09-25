@@ -389,5 +389,6 @@ C) bcrypt with cost=12: bcrypt is salted and has a tunable work factor, but its
    Bcrypt is widely deployed and still adequate in practice, but Argon2id is strictly
    better for new deployments.
 
-In FIPS 140 environments where Argon2id is not yet approved, bcrypt or PBKDF2-HMAC-SHA256
-with a high iteration count (600,000+ per NIST SP 800-132) is the required alternative.
+In FIPS 140 environments, where neither Argon2id nor bcrypt is approved, PBKDF2-HMAC-SHA256
+is the required alternative (NIST SP 800-132 sets a minimum of 1,000 iterations; OWASP
+currently recommends 600,000).

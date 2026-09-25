@@ -248,7 +248,7 @@ Find two different pairs $(H1', H2')$ and $(H1, H2)$ with $H(H1' \| H2') = H(H1 
 
 **The "second preimage attack on Merkle-Damgård" concern:**
 
-Kelsey and Schneier (2005) showed a second preimage attack on long messages hashed with Merkle-Damgård constructions in $2^{n - k}$ work (where $k = \log_2$(message blocks) and $n$ = output bits), which is lower than $2^n$. For SHA-256 with messages up to $2^{64}$ blocks, this gives $2^{192}$ work — still infeasible.
+Kelsey and Schneier (2005) showed a second preimage attack on long messages hashed with Merkle-Damgård constructions in $2^{n - k}$ work (where $k = \log_2$(message blocks) and $n$ = output bits), which is lower than $2^n$. For SHA-256, messages are limited to $2^{64}$ bits $= 2^{55}$ 512-bit blocks, so this gives about $2^{201}$ work — still infeasible.
 
 **Practical vulnerability — leaf vs. node confusion:**
 
@@ -315,4 +315,4 @@ print(f"Proof for leaf 1: {len(proof)} nodes")
 | 2 | Collision resistance | Birthday attack | $2^{128}$ | Yes |
 | 3 | MAC security | Length extension | $O(1)$ given tag | No — use HMAC |
 | 4 | Password security | Dictionary + rainbow table | $10^{10}$ ops/s (GPU) | No — use Argon2id |
-| 5 | 2nd preimage / Merkle | Long-msg 2nd preimage | $2^{192}$ | Yes (with domain sep.) |
+| 5 | 2nd preimage / Merkle | Long-msg 2nd preimage | $2^{201}$ | Yes (with domain sep.) |

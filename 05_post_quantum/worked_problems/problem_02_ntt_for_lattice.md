@@ -147,7 +147,7 @@ But $256 = 2^8$ and $3328 / 256 = 13$. So $256 \mid 3328$.
 The Kyber NTT actually uses $\zeta$ with order $2n = 512$... but $3328 = 2^8 \times 13$
 does not have $512 \mid 3328$. The resolution is that Kyber uses a **length-256 NTT
 with a specific butterfly structure** where the NTT works mod $X^{256} + 1$ by
-computing 128 separate 2-point NTTs in the final layer, not a full length-512 transform.
+stopping one layer early and leaving 128 degree-1 polynomials, not a full length-512 transform.
 
 Specifically, Kyber's NTT operates on 256-point polynomials by:
 - Using $\zeta = 17$ (a primitive 512th root of unity... let us verify):
@@ -158,10 +158,10 @@ Specifically, Kyber's NTT operates on 256-point polynomials by:
 
 The precise statement: $3329 - 1 = 3328$; for the negacyclic NTT of length 256, we
 need an element of order $512 = 2 \times 256$ modulo $3329$. Since $512 \nmid 3328$,
-the standard negacyclic NTT does not directly apply. Kyber resolves this with a
-**Good-Thomas (merged) NTT structure**: the 256-point polynomial is transformed by a
-7-layer forward NTT where the final layer handles pairs via 2-point NTTs, and the
-modular reductions are adapted accordingly.
+the standard negacyclic NTT does not directly apply. Kyber resolves this with an
+**incomplete NTT**: the 7-layer forward NTT stops one layer early, leaving 128
+degree-1 polynomials modulo $X^2 - \zeta^{2\,\mathrm{BitRev}_7(i)+1}$, which are then
+multiplied pairwise with a small base-case multiplication (FIPS 203, §4.3).
 
 The practical reason $q = 3329$ was chosen:
 - $q = 13 \times 256 + 1$, so $256 \mid (q-1)$ — necessary for the 256-length NTT

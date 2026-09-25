@@ -72,7 +72,7 @@ The server responds with its X25519 public key and the Kyber ciphertext:
 
 ```
 Extension Type:     0x0033  (key_share)
-Extension Length:   0x0467  (1127 bytes total)
+Extension Length:   0x0464  (1124 bytes total)
 Key Share Entry:
   Group:    0x6399   (X25519Kyber768)
   Key Exchange Length: 0x0460  (1120 bytes)
@@ -227,15 +227,15 @@ Additional bytes per handshake (X25519Kyber768 vs X25519):
   Total:                   +2272 bytes per TLS session
 
 At 50,000 connections/second:
-  Additional bandwidth:    50,000 × 2272 / 1,000,000 = 113.6 Mbps
+  Additional bandwidth:    50,000 × 2272 × 8 / 1,000,000 = 908.8 Mbps
 ```
 
-On a 10 Gbps link, this is 1.1% bandwidth overhead — negligible.
+On a 10 Gbps link, this is 9.1% bandwidth overhead — noticeable but manageable.
 
 **Conclusion:** The hybrid approach is operationally feasible at 50,000 connections/sec.
 A modest increase in CPU usage (approximately 2-3 additional cores) handles the Kyber
 overhead with standard library implementations. With AVX-512 hardware acceleration,
-the overhead is under 1 core. The bandwidth overhead is below 1.2% on typical links.
+the overhead is under 1 core. The bandwidth overhead is about 9% of a 10 Gbps link.
 
 ---
 
@@ -313,9 +313,9 @@ a gradual deprecation of older protocols with monitoring and eventual enforcemen
 
 | Aspect | Value |
 |---|---|
-| Additional bytes per handshake (client) | 1216 bytes (Kyber-768 public key) |
+| Additional bytes per handshake (client) | 1184 bytes (Kyber-768 public key) |
 | Additional bytes per handshake (server) | 1088 bytes (Kyber-768 ciphertext) |
-| Total additional bandwidth | 2304 bytes per TLS session |
+| Total additional bandwidth | 2272 bytes per TLS session |
 | Additional server CPU at 50k conns/sec | ~2.25 cores (baseline AVX2) |
 | Additional server CPU at 50k conns/sec | ~0.75 cores (AVX-512 accelerated) |
 | Security vs classical X25519 | Same or better (hybrid) |
