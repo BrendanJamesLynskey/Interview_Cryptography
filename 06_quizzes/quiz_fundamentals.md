@@ -32,8 +32,8 @@ D) AddRoundKey
 that share a common prefix. What information does an attacker learn?
 
 A) Nothing; reusing an IV with CBC only affects confidentiality of the last block
-B) The length of the longer message's suffix
-C) The XOR of the two plaintexts up to the point where they first differ
+B) The plaintext of the first block in which the two messages differ
+C) How many leading blocks the two messages share: the ciphertexts are identical block-for-block up to the first differing plaintext block
 D) The AES key
 
 ---
@@ -182,7 +182,7 @@ SubBytes is the sole source of non-linearity.
 
 ---
 
-**Q3. Answer: C — The XOR of the two plaintexts up to the point where they first differ**
+**Q3. Answer: C — How many leading blocks the two messages share**
 
 CBC encryption of block $i$: $C_i = E_K(P_i \oplus C_{i-1})$ with $C_0 = IV$.
 
@@ -191,11 +191,17 @@ If IV is reused and the plaintexts share a common prefix of $j$ blocks:
 - Block $j$: $C_j^{(1)} = E_K(P_j^{(1)} \oplus C_{j-1})$ and $C_j^{(2)} = E_K(P_j^{(2)} \oplus C_{j-1})$.
 - XOR: $C_j^{(1)} \oplus C_j^{(2)} = E_K(P_j^{(1)} \oplus C_{j-1}) \oplus E_K(P_j^{(2)} \oplus C_{j-1})$
 
-This is not directly $P_j^{(1)} \oplus P_j^{(2)}$ because the E_K is inside. However,
-the attacker does learn that the first $j$ blocks are identical, and that the first
-differing ciphertext block encodes the XOR of the first differing plaintext blocks
-(exploitable with a CPA). Under CPA security, reusing the IV with CBC breaks semantic
-security — the attacker learns if two plaintexts share a prefix, which violates IND-CPA.
+Because $E_K$ is applied after the XOR, this reveals nothing about $P_j^{(1)} \oplus P_j^{(2)}$:
+the two differing blocks look unrelated, and every later block is chained from a
+different $C_j$. What the attacker does learn is that the first $j$ blocks are identical
+(for example, AES-128-CBC with a fixed key and IV on two messages that share their
+first 32 bytes gives two identical leading ciphertext blocks and a different third
+block). This equality leak is enough to break semantic security (IND-CPA), which is why
+CBC requires a fresh, unpredictable IV for every message.
+
+Answer A is wrong: the leak is at the start of the message, not the last block.
+Answer B is wrong: nothing about the differing plaintext block is revealed.
+Answer D is wrong: IV reuse does not expose the key.
 
 ---
 
